@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rx Cart - Premium Pharmacy Experience</title>
+  <meta name="description" content="Luxury pharmaceutical products with concierge-level service">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #5D5FEF;
+      --primary-light: #8283f2;
+      --primary-dark: #4B4DDB;
+      --secondary: #FF6B6B;
+      --accent: #4FD1C5;
+      --dark: #2D3748;
+      --light: #F7FAFC;
+      --gray: #E2E8F0;
+      --dark-gray: #718096;
+      --gold: #D4AF37;
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--dark);
+      background-color: #f9fafb;
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    .site-header {
+      background: white;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 15px 0;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      color: var(--accent);
+    }
+
+    .main-nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .main-nav a:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .main-nav a:hover:after {
+      width: 100%;
+    }
+
+    .main-nav a:hover {
+      color: var(--primary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cart-icon {
+      position: relative;
+      color: var(--dark);
+      transition: var(--transition);
+    }
+
+    .cart-icon:hover {
+      color: var(--primary);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--secondary);
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(93, 95, 239, 0.1) 0%, rgba(79, 209, 197, 0.1) 100%);
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      color: var(--dark);
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: var(--dark-gray);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Featured Products */
+    .featured-products {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      font-size: 36px;
+    }
+
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      margin: 15px auto 0;
+      border-radius: 2px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: var(--secondary);
+      color: white;
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .product-image-container {
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .quick-view {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      color: var(--primary);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      opacity: 0;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .product-card:hover .quick-view {
+      opacity: 1;
+      bottom: 30px;
+    }
+
+    .product-info {
+      padding: 20px;
+      position: relative;
+    }
+
+    .product-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .product-price {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .product-price .old-price {
+      font-size: 16px;
+      color: var(--dark-gray);
+      text-decoration: line-through;
+      margin-right: 8px;
+    }
+
+    .product-rating {
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
+
+    .rating-count {
+      color: var(--dark-gray);
+      font-size: 14px;
+      margin-left: 5px;
+    }
+
+    .add-to-cart-btn {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Categories Section */
+    .categories {
+      padding: 60px 0;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.03) 0%, rgba(79, 209, 197, 0.03) 100%);
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .category-card {
+      height: 200px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .category-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .category-card h3 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      color: white;
+      font-size: 22px;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      padding: 80px 0;
+      background: white;
+    }
+
+    .testimonial-card {
+      background: white;
+      border-radius: var(--radius-md);
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .testimonial-card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 20px;
+      color: var(--dark-gray);
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .author-info h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .author-info p {
+      color: var(--dark-gray);
+      font-size: 14px;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      padding: 60px 0;
+      background: var(--primary);
+      color: white;
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      margin-bottom: 20px;
+    }
+
+    .newsletter p {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+      font-size: 16px;
+    }
+
+    .newsletter-form button {
+      background: var(--accent);
+      color: white;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .newsletter-form button:hover {
+      background: #3ab9ae;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--dark);
+      color: white;
+      padding: 60px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h3 {
+      font-size: 18px;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-col h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-col a:hover {
+      color: white;
+      padding-left: 5px;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .payment-methods {
+      display: flex;
+      gap: 15px;
+    }
+
+    .payment-methods img {
+      height: 24px;
+      filter: brightness(0) invert(1);
+      opacity: 0.7;
+      transition: var(--transition);
+    }
+
+    .payment-methods img:hover {
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-nav {
+        display: none;
+      }
+      
+      .hero {
+        padding: 80px 0;
+        text-align: center;
+      }
+      
+      .hero-content {
+        max-width: 100%;
+      }
+      
+      .newsletter-form {
+        flex-direction: column;
+      }
+      
+      .newsletter-form input,
+      .newsletter-form button {
+        border-radius: var(--radius-sm);
+        width: 100%;
+      }
+      
+      .newsletter-form button {
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="logo">
+          <i class="fas fa-prescription-bottle-alt"></i>
+          Rx Cart
+        </a>
+        
+        <nav class="main-nav">
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/products">Shop</a></li>
+            <li><a href="/categories">Categories</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+        
+        <div class="header-actions">
+          <a href="/search" class="search-icon">
+            <i class="fas fa-search"></i>
+          </a>
+          <a href="/account" class="user-avatar">
+            <i class="fas fa-user"></i>
+          </a>
+          <a href="/cart" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">3</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Premium Pharmaceutical Care Delivered</h1>
+        <p>Discover our curated selection of premium health products with white-glove service</p>
+        <div class="hero-buttons">
+          <a href="/products" class="btn btn-primary">Shop Now</a>
+          <a href="/about" class="btn btn-outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-products">
+    <div class="container">
+      <h2 class="section-title">Featured Products</h2>
+      
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <span class="product-badge">New</span>
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJlc2NyaXB0aW9uJTIwbWVkaWNpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Premium Supplements" class="product-image">
+            <button class="quick-view">Quick View</button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Advanced Immunity Boost</h3>
+            <div class="product-price">
+              <span class="old-price">$59.99</span>
+              $49.99
+            </div>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span class="rating-count">(128)</span>
+            </div>
+            <button class="add-to-cart-btn">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="product-card">
+          <span class="product-badge">Best Seller</span>
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJlc2NyaXB0aW9uJTIwbWVkaWNpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Luxury Skincare" class="product-image">
+            <button class="quick-view">Quick View</button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Dermatologist Serum</h3>
+            <div class="product-price">$79.99</div>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <span class="rating-count">(256)</span>
+            </div>
+            <button class="add-to-cart-btn">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJlc2NyaXB0aW9uJTIwbWVkaWNpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Medical Device" class="product-image">
+            <button class="quick-view">Quick View</button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Advanced Blood Pressure Monitor</h3>
+            <div class="product-price">$129.99</div>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+              <span class="rating-count">(84)</span>
+            </div>
+            <button class="add-to-cart-btn">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="product-card">
+          <span class="product-badge">Sale</span>
+          <div class="product-image-container">
+            <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJlc2NyaXB0aW9uJTIwbWVkaWNpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Vitamins" class="product-image">
+            <button class="quick-view">Quick View</button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Premium Multivitamin Complex</h3>
+            <div class="product-price">
+              <span class="old-price">$39.99</span>
+              $29.99
+            </div>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span class="rating-count">(312)</span>
+            </div>
+            <button class="add-to-cart-btn">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <div class="container">
+      <h2 class="section-title">Shop by Category</h2>
+      
+      <div class="categories-grid">
+        <a href="/category/prescriptions" class="category-card">
+          <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJlc2NyaXB0aW9uJTIwbWVkaWNpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Prescriptions">
+          <h3>Prescriptions</h3>
+        </a>
+        
+        <a href="/category/vitamins" class="category-card">
+          <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJlc2NyaXB0aW9uJTIwbWVkaWNpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Vitamins">
+          <h3>Vitamins & Supplements</h3>
+        </a>
+        
+        <a href="/category/skincare" class="category-card">
+          <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJlc2NyaXB0aW9uJTIwbWVkaWNpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Skincare">
+          <h3>Medical Skincare</h3>
+        </a>
+        
+        <a href="/category/devices" class="category-card">
+          <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cHJlc2NyaXB0aW9uJTIwbWVkaWNpbmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="Devices">
+          <h3>Medical Devices</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">What Our Customers Say</h2>
+      
+      <div class="products-grid">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Rx Cart has transformed how I manage my family's health needs. The premium products and concierge service are unmatched."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah J.">
+            </div>
+            <div class="author-info">
+              <h4>Sarah J.</h4>
+              <p>Verified Customer</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "The quality of their pharmaceutical products is exceptional. I appreciate the detailed information provided with each item."
+          </div>
+          <div class="testimonial-author">
+            <div class="author-avatar">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael T.">
+            </div>
+            <div class="author-info">
+              <h4>Michael T.</h4>
+              <p>Verified Customer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="container">
+      <h2>Join Our Wellness Community</h2>
+      <p>Subscribe to receive exclusive offers, health tips, and early access to new products</p>
+      
+      <form class="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>Rx Cart</h3>
+          <p>Premium pharmaceutical care with concierge-level service.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Shop</h3>
+          <ul>
+            <li><a href="#">All Products</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Best Sellers</a></li>
+            <li><a href="#">Special Offers</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Customer Service</h3>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Returns & Exchanges</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Mission</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2023 Rx Cart. All rights reserved.</p>
+        <div class="payment-methods">
+          <img src="https://via.placeholder.com/40x25?text=VISA" alt="Visa">
+          <img src="https://via.placeholder.com/40x25?text=MC" alt="Mastercard">
+          <img src="https://via.placeholder.com/40x25?text=AMEX" alt="American Express">
+          <img src="https://via.placeholder.com/40x25?text=PP" alt="PayPal">
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple interactive elements
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add to cart animation
+      const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+      addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          this.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+          setTimeout(() => {
+            this.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+          }, 2000);
+          
+          // Update cart count
+          const cartCount = document.querySelector('.cart-count');
+          if (cartCount) {
+            const currentCount = parseInt(cartCount.textContent) || 0;
+            cartCount.textContent = currentCount + 1;
+            cartCount.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+              cartCount.style.transform = 'scale(1)';
+            }, 300);
+          }
+        });
+      });
+      
+      // Quick view buttons
+      const quickViewButtons = document.querySelectorAll('.quick-view');
+      quickViewButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          e.preventDefault();
+          alert('Quick view feature would show product details here');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
